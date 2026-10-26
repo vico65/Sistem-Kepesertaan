@@ -1,0 +1,40 @@
+buatkan issue.md yang berisi perencanaan untuk nanti di implementaikan oleh junior programmer atau ai model yang lebih murah.
+
+Isi dari planningnya adalah sebagai berikut :
+
+buat tabel Staff : 
+npp : primary key, not null, int(6)
+nama : varchar(255), not null
+email : varchar(255), not null, unique
+nomor_hp : varchar(255), not null
+status : enum('aktif', 'nonaktif', 'keluar')default 'aktif' 
+created_at : datetime
+updated_at : datetime
+
+buatkan API untuk registrasi login user : 
+
+Endpoint : POST /api/users/login
+
+Request Body : 
+{
+    "npp": "123456",
+    "password": "[PASSWORD]"
+}
+
+Response Body (Success) : 
+{
+    status: 200,
+    message: "Login berhasil",
+}
+
+Response Body (Error) :
+{
+    status: 400,
+    message: "Login gagal",
+}
+
+Jika ada perubahan pada kode di sistem ini, jelaskan dengan memberi komen agar lead programmer paham apa yang diubah dan apa fungsinya.
+
+Lalu, buatkan dummy data menyesuaikan dengan tabel yang sudah dibuat sekitar 10 data.
+
+jelaskan tahapan-tahapan yang harus dilakukan untuk mengimplementasikan fitur ini, anggap nanti yang mengimplementasikan adalah junior programmer atau model AI yang lebih murah.

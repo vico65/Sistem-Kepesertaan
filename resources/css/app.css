@@ -1,29 +1,44 @@
+/* ==========================================================================
+   Import Google Fonts & Tailwind CSS v4
+   ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import 'tailwindcss';
-/* @import "@mynaui/icons/mynaui.css"; */
 
+/* Sumber file Blade / PHP untuk pemindaian utilitas CSS oleh Tailwind */
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
+/* ==========================================================================
+   Definisi Tema Desain (Tailwind CSS v4 @theme)
+   - Gunakan prefix `--color-*` agar utilitas bg-*, text-*, border-* dibuat secara otomatis
+   ========================================================================== */
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
     --font-poppins: "Poppins", sans-serif;
     --font-inter: "Inter", sans-serif;
     --color-primary: oklch(44.8% 0.119 151.328);
-    --color-primary-biru : oklch(40% 0.16 250);
-    --color-primary-hijau : oklch(65% 0.22 145);
-    --bg-dark: #000000;
+    --color-primary-biru: oklch(40% 0.16 250);
+    --color-primary-hijau: oklch(65% 0.22 145);
+    /* Diperbaiki: Menggunakan --color-dark agar Tailwind mengenali utilitas bg-dark dan text-dark */
+    --color-dark: #000000;
 }
 
+/* ==========================================================================
+   Komponen Custom (Utilities & Class Reusable)
+   ========================================================================== */
+
+/* Card profil di sidebar: bayangan diperjelas dengan nuansa biru tua agar memiliki kedalaman visual */
 .card {
-    @apply shadow-xl shadow-white rounded-xl bg-primary-biru text-white py-2 px-2
+    @apply shadow-lg shadow-blue-950/20 rounded-xl bg-primary-biru text-white py-2 px-2;
 }
 
+/* Item daftar navigasi sidebar */
 .menu-list {
-    @apply flex flex-row gap-1 cursor-pointer text-slate-800 font-medium text-xs items-center px-1 py-1 font-inter
+    @apply flex flex-row gap-2 cursor-pointer text-slate-700 hover:text-primary-biru hover:bg-slate-200/50 hover:font-semibold font-medium text-xs items-center px-2 py-2 font-inter rounded-lg transition-colors duration-150;
 }
 
+/* Item navigasi yang sedang aktif */
 .menu-selected {
-    @apply font-semibold bg-primary-biru/15 text-primary-biru rounded-lg 
+    @apply font-bold bg-primary-biru/20 text-primary-biru rounded-lg;
 }

@@ -1,28 +1,41 @@
-let buttonListSidebar = document.getElementById('button_list_sidebar')
-let sidebar = document.getElementById('sidebar')
-let iconListSidebar = document.getElementById('icon_list_sidebar')
-let container_halaman = document.getElementById('container_halaman')
-let loader = document.getElementById('loader')
-let listAkademikPages = document.querySelector('.list_akademik_pages')
-let toggleDarkMode = document.querySelector('.toggle-dark-mode')
-let toggleDarkModeChild = document.querySelector('.toggle-dark-mode div')
-let htmlTag = document.querySelector('html')
-let iconTerang = document.querySelector('.icon-terang')
-let iconGelap = document.querySelector('.icon-gelap')
+/**
+ * Sistem Kepesertaan - Core Application Script
+ * Mengatur interaktivitas UI dashboard, navigasi responsive, dan sidebar.
+ */
 
-let closeSidebar = () => {
-    sidebar.classList.toggle('-ml-96')
-    iconListSidebar.classList.toggle('text-primary')
-    iconListSidebar.classList.toggle('scale-115')
-}
+// Menangkap elemen-elemen DOM yang digunakan
+const buttonListSidebar = document.getElementById('button_list_sidebar');
+const sidebar = document.getElementById('sidebar');
+const iconListSidebar = document.getElementById('icon_list_sidebar');
+const sidebarBackdrop = document.getElementById('sidebar_backdrop');
 
-buttonListSidebar.addEventListener('click', closeSidebar)
+/**
+ * Fungsi untuk membuka/menutup (toggle) sidebar pada layar mobile.
+ * Menggunakan class transform CSS (translate-x) agar performa animasi lebih halus (GPU accelerated)
+ * dibanding mengubah margin (-ml-96) yang memicu layout reflow.
+ */
+const toggleSidebar = () => {
+    if (!sidebar) return;
 
-// toggleDarkMode.addEventListener('click', () => {
-//     toggleDarkModeChild.classList.toggle('ml-auto')
-//     htmlTag.classList.toggle('dark')
-//     iconTerang.classList.toggle('text-yellow-500')
-//     iconTerang.classList.toggle('text-slate-400')
-//     iconGelap.classList.toggle('text-sky-500')
-//     iconGelap.classList.toggle('text-slate-400')
-// })
+    // Toggle kelas geser sidebar (tampil vs sembunyi)
+    sidebar.classList.toggle('-translate-x-full');
+
+    // Toggle animasi ikon burger/menu jika elemennya ada
+    if (iconListSidebar) {
+        iconListSidebar.classList.toggle('text-primary');
+        iconListSidebar.classList.toggle('scale-110');
+    }
+
+    // Toggle backdrop gelap untuk kemudahan menutup sidebar di layar sentuh/mobile
+    if (sidebarBackdrop) {
+        sidebarBackdrop.classList.toggle('hidden');
+    }
+};
+
+/**
+ * Event Listener dengan Null-safety:
+ * Menghindari error runtime "Cannot read properties of null" jika script dimuat di halaman tanpa sidebar.
+ */
+buttonListSidebar?.addEventListener('click', toggleSidebar);
+sidebarBackdrop?.addEventListener('click', toggleSidebar);
+
